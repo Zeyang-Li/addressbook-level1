@@ -438,8 +438,11 @@ public class AddressBook {
      * @return successful add person feedback message
      */
     private static String getMessageForSuccessfulAddPerson(String[] addedPerson) {
+        String name = getNameFromPerson(addedPerson);
+        String phone = getPhoneFromPerson(addedPerson);
+        String email = getEmailFromPerson(addedPerson);
         return String.format(MESSAGE_ADDED,
-                getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
+               name , phone, email);
     }
 
     /**
@@ -620,7 +623,7 @@ public class AddressBook {
      */
     private static void showToUser(String... message) {
         for (String m : message) {
-            System.out.println(LINE_PREFIX + m);
+            System.out.println(LINE_PREFIX + ' ' + m);
         }
     }
 
@@ -668,6 +671,7 @@ public class AddressBook {
      * @return formatted message showing internal state
      */
     private static String getMessageForFormattedPersonData(String[] person) {
+
         return String.format(MESSAGE_DISPLAY_PERSON_DATA,
                 getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person));
     }
@@ -883,8 +887,11 @@ public class AddressBook {
      * @return encoded string
      */
     private static String encodePersonToString(String[] person) {
+        String name = getNameFromPerson(person);
+        String phone = getPhoneFromPerson(person);
+        String email = getEmailFromPerson(person);
         return String.format(PERSON_STRING_REPRESENTATION,
-                getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person));
+               name , phone, email);
     }
 
     /**
@@ -1032,6 +1039,7 @@ public class AddressBook {
         return isPersonNameValid(person[PERSON_DATA_INDEX_NAME])
                 && isPersonPhoneValid(person[PERSON_DATA_INDEX_PHONE])
                 && isPersonEmailValid(person[PERSON_DATA_INDEX_EMAIL]);
+
     }
 
     /*
@@ -1048,6 +1056,7 @@ public class AddressBook {
      * @param name to be validated
      */
     private static boolean isPersonNameValid(String name) {
+
         return name.matches("(\\w|\\s)+");  // name is nonempty mixture of alphabets and whitespace
         //TODO: implement a more permissive validation
     }
